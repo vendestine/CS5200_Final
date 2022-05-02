@@ -711,7 +711,8 @@ def page8_order_customer_view(phone_number, password):
                 list = [order_type, order_description, order_status, phone_number, shop_name, address_line, payment_card]
                 result = order1.order_add_by_customer(*list)
                 if result:
-                    order1.order_fix()
+                    order_id = order1.get_id(phone_number)
+                    order1.order_fix(order_id)
                     break
                 else:
                     continue

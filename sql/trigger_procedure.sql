@@ -155,7 +155,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS order_fix;
 DELIMITER $$
-CREATE PROCEDURE order_fix()
+CREATE PROCEDURE order_fix(id INT)
 BEGIN
 
 truncate table order_dish;
@@ -172,7 +172,7 @@ WHERE ans.dish_name = d.dish_name) details;
 UPDATE `order` SET order_total =  
 (SELECT SUM(dish_price) AS total_price
 FROM order_dish od, dish d
-WHERE od.dish_id = d.dish_id);
+WHERE od.dish_id = d.dish_id AND od.order_id = id) WHERE order_id = id; 
     
 END$$
 DELIMITER ;

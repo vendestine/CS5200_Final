@@ -362,8 +362,8 @@ class Order():
             print("order add fail!")
             return False
 
-    def order_fix(self):
-        sql = "CALL order_fix()"
+    def order_fix(self, arg):
+        sql = "CALL order_fix({})".format(arg)
         result = self.mysql.update(sql)
         if not result:
             print("order fix success!")
@@ -418,6 +418,13 @@ class Order():
         else:
             return result
 
+    def get_id(self, arg):
+        sql = "CALL order_read_by_customer('{}')".format(arg)
+        result = self.mysql.get_all(sql)
+        if not result:
+            print("read order fail")
+        else:
+            return result[-1]['order_id']
 
 # comment table
 class Comment():
