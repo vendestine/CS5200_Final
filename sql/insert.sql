@@ -41,7 +41,10 @@ dish (dish_id, dish_name, dish_description, dish_price, shop_id)
 VALUES
 ('a01', 'sushi', 'japan', '15', '7818739560'),
 ('a02', 'wudong', 'japan', '20', '7818739560'),
-('a03', 'noodle', 'japan', '10', '7818739560');
+('a03', 'noodle', 'japan', '10', '7818739560'),
+('b01', 'sushi', 'japan', '15', '7818739561'),
+('b02', 'wudong', 'japan', '20', '7818739561'),
+('b03', 'noodle', 'japan', '10', '7818739561');
 
 INSERT INTO 
 `order` (order_id, order_type, order_description, order_total, order_time, order_status, customer_id, shop_id, address_line, payment_card)

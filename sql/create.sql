@@ -27,22 +27,24 @@ CREATE TABLE restaurant (
 );
 
 CREATE TABLE payment_card (
-	payment_id INT PRIMARY KEY,
+	payment_id INT NOT NULL,
     customer_id CHAR(11) NOT NULL,
     card_number CHAR(16) NOT NULL,
     cvc INT NOT NULL,
     zip_code CHAR(5) NOT NULL,
+    PRIMARY KEY(payment_id, customer_id),
     FOREIGN KEY (customer_id) REFERENCES customer(phone_number)
 		ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE address (
-    address_id INT PRIMARY KEY,
+    address_id INT NOT NULL,
     customer_id CHAR(11) NOT NULL,
     address_line VARCHAR(50) NOT NULL,
     city VARCHAR(30) NOT NULL,
     state CHAR(2) NOT NULL,
     zip_code CHAR(5) NOT NULL,
+    PRIMARY KEY(address_id, customer_id),
     FOREIGN KEY (customer_id) REFERENCES customer(phone_number)
 		ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -77,11 +79,12 @@ CREATE TABLE `order` (
 );
 
 CREATE TABLE dish (
-	dish_id CHAR(3) PRIMARY KEY,
+	dish_id CHAR(3) NOT NULL,
     dish_name VARCHAR(30) NOT NULL,
     dish_description TEXT NOT NULL,
     dish_price INT NOT NULL,
     shop_id CHAR(11) NOT NULL,
+    PRIMARY KEY(dish_id, shop_id),
     FOREIGN KEY (shop_id) REFERENCES restaurant(phone_number)
 		ON UPDATE CASCADE ON DELETE CASCADE
 );
